@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 
     <application
         android:allowBackup="true"
@@ -31,15 +35,51 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AndroidComponetTest">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <activity
             android:name=".broadcast.ExplicitCastReceiverTestActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AndroidComponetTest">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".service.startcommand.StartCommandTestActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AndroidComponetTest">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".service.foreground.ForegroundTestActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AndroidComponetTest">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".service.binding.BindingTestActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AndroidComponetTest">
@@ -49,6 +89,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.startcommand.StartCommandTestService"
+            android:exported="true" />
+
+        <service
+            android:name=".service.foreground.ForegroundTestService"
+            android:exported="true"
+            android:foregroundServiceType="connectedDevice" />
+
+        <service
+            android:name=".service.binding.BindingTestService"
+            android:exported="true" />
+
+        <service
+            android:name=".service.binding.MessengerTestService"
+            android:exported="true"
+            android:permission="android.permission.POST_NOTIFICATIONS">
+            <intent-filter>
+                <action android:name="com.hyundaiht.androidcomponettest.REMOTE_SERVICE" />
+            </intent-filter>
+        </service>
+        <!--            android:permission="com.example.BAPP.PERMISSION"-->
 
         <receiver
             android:name=".broadcast.Test1BroadcastReceiver"
